@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+    Scrumptious recipes
+{% endblock %}
+
+{% block content %}
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <title>{{ recipe_object.title }} - Scrumptious Recipes</title>
+    <link rel="stylesheet" href="{% static "css/recipes.css" %}">
+</head>
+<body> -->
+    <header>
+        <nav id="is-orange">
+            <a id="is-orange" href="{% url 'recipes_list' %}">Main Page</a> 
+             <!-- url tag grabs recipes_list from url path -->
+        </nav>
+    </header>
+    <main>
+        <form method="post">
+            {% csrf_token %} 
+            <!-- csrf is django security measure that we include in all of our forms -->
+            {{ form.as_p }}
+            <button>Create</button>
+        </form>
+    </main>
+{% endblock content %}
+    <footer id="is-ehhh">
+        Made with love by Scrumptious Recipes
+    </footer>
+</body>
+</html>

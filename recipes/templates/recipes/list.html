@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Scrumptious recipes
+{% endblock title %}
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <title>Scrumptious Recipes</title>
+    <link rel="stylesheet" href="{% static "css/recipes.css" %}">
+</head>
+<body> -->
+{% block content %}
+    <header>
+        <nav id="is-orange">
+            <a id="is-orange" href="{% url 'recipes_list' %}">Main Page</a> 
+            <!-- use url tag from django, recipes_list grabs from url path -->
+            <a href="{% url 'create_recipe' %}">Create a recipe</a>
+            {% if user.is_authenticated %}
+                Hello, {{ user.username }}
+            {% else%}
+                <a href="{% url 'signup' %}">Sign Up</a>
+                <a href="{% url 'user_login' %}">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        <h1 class="is-darkbrown">Scrumptious Recipes</h1>
+        <h2>All the food that's fit to eat</h2>
+        <div class="grid-container">
+            {% for recipe in show_recipe %}
+            <!-- for loop the var is from views -->
+            <div>
+                    <h3>   
+                        <a class="is-darkbrown" href="{% url 'show_recipe' recipe.id %}"> {{ recipe.title }}</a> 
+                         <!-- recipe.id is from views and views look at models.py -->
+                    </h3>
+                    <p>{{ recipe.created_on|date:"F j, Y" }}</p>
+                    <img src="{{ recipe.picture }}" height="200">
+                    <div>4.3 stars</div>
+            </div>
+           {% endfor %}
+           <!-- ends loop here -->
+        </div>
+    </main>
+{% endblock content %}
+    <footer id="is-ehhh">
+        <p id="is-ehhh">Made with love by Scrumptious Receipes</p>
+    </footer>
+</body>
+</html>
+
